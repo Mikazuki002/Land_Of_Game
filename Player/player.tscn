@@ -343,6 +343,8 @@ _data = {
 &"walk_up": SubResource("Animation_dw050")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3vf3"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7ghd"]
 radius = 12.649111
 
@@ -447,6 +449,15 @@ script = ExtResource("7_n7ghd")
 
 [node name="Interactions" type="Node2D" parent="." unique_id=549551790]
 script = ExtResource("6_1jxqw")
+
+[node name="Area2D" type="Area2D" parent="Interactions" unique_id=534786663]
+position = Vector2(0, 6)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Area2D" unique_id=539319671]
+shape = SubResource("RectangleShape2D_x3vf3")
+debug_color = Color(0.14672852, 0.64584005, 5.7756904e-07, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=491358749]
 editor_draw_limits = true

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqjgylnb78cnp" path="res://Items/Item_Pickup/item_pickup.tscn" id="7_v7dth"]
 [ext_resource type="Resource" uid="uid://ognil5ulsm6h" path="res://Items/healing_potion.tres" id="8_pi42a"]
 [ext_resource type="Resource" uid="uid://laoedojoil7v" path="res://Items/clover.tres" id="9_pi42a"]
+[ext_resource type="PackedScene" uid="uid://43410jl4arla" path="res://Interactables/TreasureChest/treasure_chect.tscn" id="10_h1jm5"]
 
 [node name="Playground" type="Node2D" unique_id=1993064545]
 y_sort_enabled = true
@@ -46,3 +47,13 @@ item_data = ExtResource("8_pi42a")
 [node name="ItemPickup2" parent="." unique_id=658357368 instance=ExtResource("7_v7dth")]
 position = Vector2(452, 166)
 item_data = ExtResource("9_pi42a")
+
+[node name="TreasureChect" parent="." unique_id=990758856 instance=ExtResource("10_h1jm5")]
+position = Vector2(251, 104)
+item_data = ExtResource("9_pi42a")
+quantity = 10
+
+[node name="TreasureChect2" parent="." unique_id=1028351935 instance=ExtResource("10_h1jm5")]
+position = Vector2(407, 104)
+item_data = ExtResource("8_pi42a")
+quantity = 10
