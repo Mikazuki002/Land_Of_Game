@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://laoedojoil7v"]
+
+[ext_resource type="Script" uid="uid://dt68qjpnip3ck" path="res://Items/Scripts/item_data.gd" id="1_0gk0q"]
+[ext_resource type="Script" uid="uid://cs08r22oo8irf" path="res://Items/Item_Effects/item_effect.gd" id="1_7i5s5"]
+[ext_resource type="Texture2D" uid="uid://6rn1to638rjw" path="res://Items/Sprites/updated.png" id="2_0gk0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti4ee"]
+atlas = ExtResource("2_0gk0q")
+region = Rect2(98, 6, 32, 32)
+
+[resource]
+script = ExtResource("1_0gk0q")
+name = "Clover"
+description = "A lucky Item"
+texture = SubResource("AtlasTexture_ti4ee")
+metadata/_custom_type_script = "uid://dt68qjpnip3ck"

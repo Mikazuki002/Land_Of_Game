@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://bhcugpqj1xj63"]
+
+[ext_resource type="Script" uid="uid://b0x08o2wjq784" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
+[ext_resource type="Texture2D" uid="uid://cn5tblwhwbnga" path="res://Items/Sprites/1241.png" id="2_rsqrg"]
+[ext_resource type="PackedScene" uid="uid://ddg72vvkj7oe5" path="res://GUI/pause_menu/Inventory/Inventory_Slot.tscn" id="3_36pfd"]
+[ext_resource type="Script" uid="uid://bpbsrb1i7wxi5" path="res://GUI/pause_menu/Inventory/Scripts/inventory_ui.gd" id="3_ewgu5"]
+[ext_resource type="Resource" uid="uid://b75ad5uxq6hux" path="res://GUI/pause_menu/Inventory/player_inventory.tres" id="4_sn1ji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewgu5"]
+atlas = ExtResource("2_rsqrg")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sn1ji"]
+texture = SubResource("AtlasTexture_ewgu5")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=783587887]
+process_mode = 3
+script = ExtResource("1_4w82k")
+
+[node name="Control" type="Control" parent="." unique_id=959493563]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1520676105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 0.3137255)
+
+[node name="Label" type="Label" parent="Control" unique_id=2089400198]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_top = 6.0
+offset_right = -126.0
+offset_bottom = 29.0
+grow_horizontal = 2
+text = "[MENU]"
+
+[node name="ItemDescription" type="Label" parent="Control" unique_id=363998645]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -188.0
+offset_top = 144.0
+offset_right = 15.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1177554981]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 41.0
+offset_right = 253.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_sn1ji")
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer" unique_id=972795167]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_ewgu5")
+data = ExtResource("4_sn1ji")
+
+[node name="InventorySlot" parent="Control/PanelContainer/GridContainer" unique_id=444837068 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/PanelContainer/GridContainer" unique_id=527241852 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/PanelContainer/GridContainer" unique_id=355412884 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/PanelContainer/GridContainer" unique_id=1679998455 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/PanelContainer/GridContainer" unique_id=1768024392 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" unique_id=2021203740 instance=ExtResource("3_36pfd")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1272565684]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = 56.0
+offset_right = 5.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button_Save" type="Button" parent="Control/HBoxContainer" unique_id=373180363]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Save"
+
+[node name="Button_Load" type="Button" parent="Control/HBoxContainer" unique_id=109753230]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Load"

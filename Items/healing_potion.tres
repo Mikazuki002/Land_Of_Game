@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ognil5ulsm6h"]
+
+[ext_resource type="Script" uid="uid://cs08r22oo8irf" path="res://Items/Item_Effects/item_effect.gd" id="1_dt04m"]
+[ext_resource type="Script" uid="uid://dt68qjpnip3ck" path="res://Items/Scripts/item_data.gd" id="1_gadpi"]
+[ext_resource type="Script" uid="uid://d18p5b3w45oqx" path="res://Items/Item_Effects/item_effect_heal.gd" id="2_3xyh4"]
+[ext_resource type="Texture2D" uid="uid://6rn1to638rjw" path="res://Items/Sprites/updated.png" id="2_gadpi"]
+
+[sub_resource type="Resource" id="Resource_fk07p"]
+script = ExtResource("2_3xyh4")
+metadata/_custom_type_script = "uid://d18p5b3w45oqx"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xyh4"]
+atlas = ExtResource("2_gadpi")
+region = Rect2(34, 4, 32, 32)
+
+[resource]
+script = ExtResource("1_gadpi")
+name = "Health Potion"
+description = "Allows to Restore Healt Points"
+texture = SubResource("AtlasTexture_3xyh4")
+effects = Array[ExtResource("1_dt04m")]([SubResource("Resource_fk07p")])
+metadata/_custom_type_script = "uid://dt68qjpnip3ck"

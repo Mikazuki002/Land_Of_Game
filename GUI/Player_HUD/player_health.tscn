@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c45arpl5i1h66"]
+
+[ext_resource type="Script" uid="uid://crngcejcp6e2d" path="res://GUI/Player_HUD/player_health.gd" id="1_n1uve"]
+[ext_resource type="PackedScene" uid="uid://cx524ov26yyxj" path="res://GUI/Player_HUD/health_points_gui.tscn" id="2_n1uve"]
+
+[node name="PlayerHealth" type="CanvasLayer" unique_id=123153595]
+layer = 2
+script = ExtResource("1_n1uve")
+
+[node name="Control" type="Control" parent="." unique_id=186917054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control" unique_id=460114947]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 3.0
+offset_right = 429.0
+offset_bottom = 38.0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 10
+alignment = 1
+
+[node name="Health_Points" parent="Control/HFlowContainer" unique_id=2042368050 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points2" parent="Control/HFlowContainer" unique_id=1045602648 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points3" parent="Control/HFlowContainer" unique_id=2147318513 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points4" parent="Control/HFlowContainer" unique_id=515721532 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points5" parent="Control/HFlowContainer" unique_id=1150320968 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points6" parent="Control/HFlowContainer" unique_id=208693913 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points7" parent="Control/HFlowContainer" unique_id=734298231 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points8" parent="Control/HFlowContainer" unique_id=1777063989 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points9" parent="Control/HFlowContainer" unique_id=620934876 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points10" parent="Control/HFlowContainer" unique_id=831809872 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points11" parent="Control/HFlowContainer" unique_id=909739784 instance=ExtResource("2_n1uve")]
+layout_mode = 2
+
+[node name="Health_Points12" parent="Control/HFlowContainer" unique_id=1270326262 instance=ExtResource("2_n1uve")]
+layout_mode = 2

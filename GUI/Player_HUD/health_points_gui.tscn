@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cx524ov26yyxj"]
+
+[ext_resource type="Script" uid="uid://dsevsq6nipfkw" path="res://GUI/Player_HUD/healt_points_gui.gd" id="1_aem54"]
+[ext_resource type="Texture2D" uid="uid://d0p7e10xbgfpr" path="res://GUI/Player_HUD/Health.png" id="2_aem54"]
+
+[node name="Health_Points" type="Control" unique_id=2042368050]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_aem54")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=416410356]
+scale = Vector2(0.33495146, 0.35643566)
+texture = ExtResource("2_aem54")
+centered = false
+hframes = 5

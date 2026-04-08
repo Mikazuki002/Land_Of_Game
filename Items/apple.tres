@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dovph8y6vylki"]
+
+[ext_resource type="Script" uid="uid://cs08r22oo8irf" path="res://Items/Item_Effects/item_effect.gd" id="1_xwhp1"]
+[ext_resource type="Script" uid="uid://dt68qjpnip3ck" path="res://Items/Scripts/item_data.gd" id="2_ovoyb"]
+
+[resource]
+script = ExtResource("2_ovoyb")
+name = "Apple"
+description = "Delicious Red Apple"
+metadata/_custom_type_script = "uid://dt68qjpnip3ck"
