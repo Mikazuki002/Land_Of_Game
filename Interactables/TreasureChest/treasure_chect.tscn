@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dvxk55dlc6116" path="res://Interactables/TreasureChest/treasure_chest.gd" id="1_21vse"]
 [ext_resource type="Texture2D" uid="uid://l1gt5s2ksytj" path="res://Interactables/TreasureChest/Treasure_Chest.png" id="2_olsme"]
 [ext_resource type="Texture2D" uid="uid://6rn1to638rjw" path="res://Items/Sprites/updated.png" id="3_t4hpq"]
+[ext_resource type="PackedScene" uid="uid://cu0uouadiuf2s" path="res://GeneralNodes/Persistent_Data_Handler/persistent_data_handler.tscn" id="4_olsme"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pue3g"]
 atlas = ExtResource("3_t4hpq")
@@ -199,7 +200,6 @@ offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 10
-text = "x99"
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1069158314]
@@ -222,3 +222,5 @@ monitorable = false
 position = Vector2(-1, 9.5)
 shape = SubResource("RectangleShape2D_n71ju")
 debug_color = Color(0.3137255, 1, 0, 0.41960785)
+
+[node name="PersistentDataIsOpen" parent="." unique_id=955266799 instance=ExtResource("4_olsme")]

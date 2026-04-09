@@ -38,6 +38,8 @@ position = Vector2(294, 175)
 
 [node name="LevelTransition" parent="." unique_id=549951946 instance=ExtResource("6_4bqqs")]
 position = Vector2(-192, 320)
+level = "uid://ppqsbuqgsjkj"
+target_transition_area = "LevelTransition2"
 size = 3
 
 [node name="ItemPickup" parent="." unique_id=627148537 instance=ExtResource("7_v7dth")]
