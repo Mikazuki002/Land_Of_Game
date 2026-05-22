@@ -182,6 +182,7 @@ size = Vector2(26, 13)
 size = Vector2(32, 15)
 
 [node name="TreasureChect" type="Node2D" unique_id=990758856]
+process_mode = 3
 script = ExtResource("1_21vse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=91078645]
