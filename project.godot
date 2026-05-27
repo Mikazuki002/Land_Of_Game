@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Land of Code & Magic"
-run/main_scene="uid://btn0ldnhhxg2s"
+run/main_scene="uid://c2s70qkdnjc77"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

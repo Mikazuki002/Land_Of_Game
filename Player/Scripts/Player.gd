@@ -4,10 +4,12 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var cardinal_direct : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
+@onready var state_machine: Node = $StateMachine
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var state_machines: PlayerStateMachine = $StateMachine
 @onready var hit_box: Hitbox = $HitBox
 
 signal directionChanged(new_direction : Vector2)
@@ -19,11 +21,9 @@ var max_hp : int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayerManager.player = self
 	state_machine.initialize(self)
 	hit_box.damaged.connect(_take_damage)
 	updateHP(99)
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

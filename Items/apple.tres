@@ -1,10 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dovph8y6vylki"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dr8h4e6weul5g"]
 
-[ext_resource type="Script" uid="uid://cs08r22oo8irf" path="res://Items/Item_Effects/item_effect.gd" id="1_xwhp1"]
-[ext_resource type="Script" uid="uid://dt68qjpnip3ck" path="res://Items/Scripts/item_data.gd" id="2_ovoyb"]
+[ext_resource type="Script" uid="uid://cs08r22oo8irf" path="res://Items/Item_Effects/item_effect.gd" id="1_2tqo0"]
+[ext_resource type="Script" uid="uid://dt68qjpnip3ck" path="res://Items/Scripts/item_data.gd" id="2_dcctu"]
+[ext_resource type="Texture2D" uid="uid://6rn1to638rjw" path="res://Items/Sprites/updated.png" id="3_nkxwa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6jgd"]
+atlas = ExtResource("3_nkxwa")
+region = Rect2(64, 3, 32, 32)
 
 [resource]
-script = ExtResource("2_ovoyb")
-name = "Apple"
-description = "Delicious Red Apple"
+script = ExtResource("2_dcctu")
+name = "Crystal"
+description = "A highly valueable Crystal"
+texture = SubResource("AtlasTexture_u6jgd")
 metadata/_custom_type_script = "uid://dt68qjpnip3ck"

@@ -459,10 +459,6 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_x3vf3")
 debug_color = Color(0.14672852, 0.64584005, 5.7756904e-07, 0.41960785)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=491358749]
-editor_draw_limits = true
-script = ExtResource("8_dw050")
-
 [node name="HitBox" parent="." unique_id=1854450308 instance=ExtResource("9_b26j0")]
 collision_layer = 2
 collision_mask = 256
@@ -478,3 +474,7 @@ libraries/ = SubResource("AnimationLibrary_q13i1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=313846315]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_wt17y")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=491358749]
+editor_draw_limits = true
+script = ExtResource("8_dw050")

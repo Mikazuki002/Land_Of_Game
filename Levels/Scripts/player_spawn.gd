@@ -6,5 +6,6 @@ func _ready() -> void:
 
 	visible = false
 	if PlayerManager.player_spawned == false:
+		await get_tree().process_frame
 		PlayerManager.set_player_position(global_position)
 		PlayerManager.player_spawned = true
