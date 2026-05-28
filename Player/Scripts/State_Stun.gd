@@ -12,6 +12,7 @@ var next_state : State = null
 
 
 @onready var idle: State_Idle = $"../Idle"
+@onready var death: StateDeath = $"../Death"
 
 
 func init() -> void:
@@ -60,9 +61,13 @@ func physics(_delta : float) -> State:
 
 func _player_damaged(_hurt_box : HurtBox) -> void:
 	hurt_box = _hurt_box
-	state_machine.changeState(self)
+	
+	if state_machine.current_state != death:
+		state_machine.changeState(self)
 	pass
 	
 
 func _animation_finished(_a : String) -> void:
 	next_state = idle
+	if player.hp <= 0:
+		next_state = death
