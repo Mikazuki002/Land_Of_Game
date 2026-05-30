@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b32kof12bnhdn"]
+
+[node name="EnergyExplosion" type="Sprite2D" unique_id=1095236217]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=500925941]

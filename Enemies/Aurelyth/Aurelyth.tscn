@@ -501,6 +501,7 @@ _data = {
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_jrksg")
+hp = 5
 
 [node name="HurtBox" parent="." unique_id=954485050 instance=ExtResource("2_hwcvw")]
 monitoring = true

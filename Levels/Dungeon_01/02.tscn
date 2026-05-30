@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bm7qx3jmyrqqd" path="res://TileMaps/dungeon_01.tscn" id="1_l6mld"]
 [ext_resource type="PackedScene" uid="uid://cd63ph2bb5pwc" path="res://Levels/Player_Spawn.tscn" id="2_888m7"]
 [ext_resource type="PackedScene" uid="uid://dsp1tjl1tdst7" path="res://Levels/Level_Transition.tscn" id="4_4ghom"]
+[ext_resource type="Script" uid="uid://cqpbblc5qj7m2" path="res://Levels/Dungeon_01/vaelith_boss_script.gd" id="5_2mvfi"]
+[ext_resource type="PackedScene" uid="uid://cu0uouadiuf2s" path="res://GeneralNodes/Persistent_Data_Handler/persistent_data_handler.tscn" id="5_6gmjg"]
 [ext_resource type="Texture2D" uid="uid://cwclcf6idnhao" path="res://Enemies/Final_Boss/Vaelith/Vaelith.png" id="5_hu5yb"]
 [ext_resource type="PackedScene" uid="uid://cjqr5p0q0gtqw" path="res://Enemies/Final_Boss/Vaelith/energy_beam.tscn" id="6_4ghom"]
 [ext_resource type="PackedScene" uid="uid://cs2pyp0cwej6f" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="6_xuk7l"]
@@ -27,7 +29,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_hu5yb"]
 resource_name = "down"
 length = 0.6
-loop_mode = 2
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,10 +38,10 @@ tracks/0/path = NodePath("Vaelith_Boss:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 6, 6]
 }
 
 [sub_resource type="Animation" id="Animation_vr04q"]
@@ -54,10 +56,10 @@ tracks/0/path = NodePath("Vaelith_Boss:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [14, 15, 16, 17, 18, 19, 20]
+"values": [14, 20, 14]
 }
 
 [sub_resource type="Animation" id="Animation_8clop"]
@@ -72,10 +74,10 @@ tracks/0/path = NodePath("Vaelith_Boss:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [7, 8, 9, 10, 11, 12, 13]
+"values": [7, 13, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ghom"]
@@ -91,6 +93,199 @@ radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ys8le"]
 radius = 30.0
+
+[sub_resource type="Animation" id="Animation_x4ton"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vaelith_Boss:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(246, 158)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vaelith_Boss:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_ys8le"]
+resource_name = "appear"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vaelith_Boss:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(230, 158), Vector2(246, 158)]
+}
+
+[sub_resource type="Animation" id="Animation_cal53"]
+resource_name = "cast_spells"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vaelith_Boss:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_h6u4a"]
+resource_name = "destroy"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vaelith_Boss:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(246, 158), Vector2(246, 170)]
+}
+
+[sub_resource type="Animation" id="Animation_djotu"]
+resource_name = "disappear"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vaelith_Boss:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(246, 158), Vector2(260, 158)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_63q14"]
+_data = {
+&"RESET": SubResource("Animation_x4ton"),
+&"appear": SubResource("Animation_ys8le"),
+&"cast_spells": SubResource("Animation_cal53"),
+&"destroy": SubResource("Animation_h6u4a"),
+&"disappear": SubResource("Animation_djotu")
+}
+
+[sub_resource type="Animation" id="Animation_63q14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vaelith_Boss:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ywv3x"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vaelith_Boss:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.30302078, 0.40302077, 0.50311065, 0.6031107, 0.70246357, 0.8024636, 0.9044774),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1.6124506, 1.3535496, 1.1941766, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jed7g"]
+resource_name = "default"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ga58k"]
+_data = {
+&"RESET": SubResource("Animation_63q14"),
+&"damaged": SubResource("Animation_ywv3x"),
+&"default": SubResource("Animation_jed7g")
+}
 
 [sub_resource type="Gradient" id="Gradient_xuk7l"]
 offsets = PackedFloat32Array(0.22149123, 0.60745615, 0.8881579)
@@ -120,6 +315,10 @@ side = 2
 
 [node name="Vaelith" type="Node2D" parent="." unique_id=581722793]
 y_sort_enabled = true
+script = ExtResource("5_2mvfi")
+max_hp = 3
+
+[node name="PersistentDataHandler" parent="Vaelith" unique_id=955266799 instance=ExtResource("5_6gmjg")]
 
 [node name="BossNode" type="Node2D" parent="Vaelith" unique_id=1990132684]
 
@@ -129,6 +328,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_hu5yb")
 hframes = 7
 vframes = 3
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Vaelith/BossNode/Vaelith_Boss" unique_id=1058614860]
 root_node = NodePath("../..")
@@ -149,6 +349,12 @@ debug_color = Color(0.70196074, 0.04492077, 0, 0.41960785)
 position = Vector2(246, 165)
 shape = SubResource("CircleShape2D_ys8le")
 debug_color = Color(0, 0.1500001, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vaelith/BossNode" unique_id=250700771]
+libraries/ = SubResource("AnimationLibrary_63q14")
+
+[node name="Animation_Damage" type="AnimationPlayer" parent="Vaelith/BossNode" unique_id=812371644]
+libraries/ = SubResource("AnimationLibrary_ga58k")
 
 [node name="BeamAttacks" type="Node2D" parent="Vaelith" unique_id=1391891383]
 visible = false
