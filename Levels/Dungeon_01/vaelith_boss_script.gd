@@ -1,5 +1,8 @@
 class_name Vaelith extends Node2D
 
+const ENERGY_EXPLOSION : PackedScene = preload("res://Enemies/Final_Boss/energy_explosion.tscn")
+
+
 @export var max_hp : int = 10
 var hp : int = 10
 
@@ -21,21 +24,44 @@ var positions : Array[Vector2]
 
 func _ready() -> void:
 	hp = max_hp
-	
 	hit_box.damaged.connect(damage_taken)
-	
-	
+
+	await get_tree().process_frame
 	for c in $PositionTargets.get_children():
 		positions.append(c.global_position)
-	
-	print(positions)
 	$PositionTargets.visible = false
-	
-	
-	
+	print(positions)
+	teleport(1)
+
+
 
 
 func _process(delta: float) -> void:
+	pass
+
+func teleport(_location : int) -> void:
+	animation_player.play("disappear")
+	enable_hit_box(false)
+
+	await get_tree().create_timer(1).timeout
+	boss_node.global_position = positions[_location]
+	current_position = _location
+	
+	animation_player.play("appear")
+	await animation_player.animation_finished
+	idle()
+	pass
+
+func idle() -> void:
+	enable_hit_box()
+	
+	animation_player.play("idle")
+	await animation_player.animation_finished
+	
+	var _t : int = current_position
+	while _t == current_position:
+		_t = randi_range(0,1)
+	teleport(_t)
 	pass
 
 
@@ -68,3 +94,12 @@ func defeat() -> void:
 func enable_hit_box(_v : bool = true) -> void:
 	hit_box.set_deferred("monitorable", _v) 
 	hurt_box.set_deferred("monitoring", _v) 
+
+
+func explosion(_p : Vector2 = Vector2.ZERO) -> void:
+	var e : Node2D = ENERGY_EXPLOSION.instantiate()
+	
+	e.global_position = boss_node.global_position + _p
+	get_parent().add_child.call_deferred(e)
+	
+	pass
