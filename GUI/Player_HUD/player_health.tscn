@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://crngcejcp6e2d" path="res://GUI/Player_HUD/player_health.gd" id="1_n1uve"]
 [ext_resource type="PackedScene" uid="uid://cx524ov26yyxj" path="res://GUI/Player_HUD/health_points_gui.tscn" id="2_n1uve"]
+[ext_resource type="Texture2D" uid="uid://cqvrljac7psdn" path="res://GUI/Player_HUD/boss_hp.png" id="3_n1uve"]
+[ext_resource type="Texture2D" uid="uid://bol2jqrc0ya8k" path="res://GUI/Player_HUD/boss_hp_bar.png" id="4_m1g5x"]
 
 [sub_resource type="Theme" id="Theme_nv03i"]
 
@@ -168,6 +170,14 @@ _data = {
 &"show_game_over": SubResource("Animation_m1g5x")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1g5x"]
+atlas = ExtResource("3_n1uve")
+region = Rect2(134, 342, 59, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhx4x"]
+atlas = ExtResource("3_n1uve")
+region = Rect2(308, 341, 58, 62)
+
 [node name="PlayerHealth" type="CanvasLayer" unique_id=123153595]
 layer = 2
 script = ExtResource("1_n1uve")
@@ -295,3 +305,61 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Game_Over" unique_id=62393677]
 libraries/ = SubResource("AnimationLibrary_fhx4x")
+
+[node name="Boss_GUI" type="Control" parent="Control" unique_id=64097192]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = 0.002746582
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control/Boss_GUI" unique_id=672147253]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_right = 84.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 90.0
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_m1g5x")
+texture_progress = SubResource("AtlasTexture_fhx4x")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Boss_GUI" unique_id=866061696]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -10.001373
+offset_right = 88.0
+offset_bottom = 22.998627
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_m1g5x")
+region_rect = Rect2(11, 7, 41, 17)
+patch_margin_right = 25
+axis_stretch_horizontal = 1
+
+[node name="Label" type="Label" parent="Control/Boss_GUI" unique_id=1405576401]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -5.0
+offset_right = 33.0
+offset_bottom = 18.0
+grow_horizontal = 2
+text = "VAELITH"

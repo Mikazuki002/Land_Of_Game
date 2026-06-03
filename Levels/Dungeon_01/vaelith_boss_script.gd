@@ -34,6 +34,8 @@ func _ready() -> void:
 	
 	
 	hp = max_hp
+	
+	PlayerHealth.show_boss_health("Vaelith")
 	hit_box.damaged.connect(damage_taken)
 
 	await get_tree().process_frame
@@ -159,6 +161,8 @@ func damage_taken(_hurt_box : HurtBox) -> void:
 	
 	damage_count += 1
 	
+	PlayerHealth.update_boss_health(hp, max_hp)
+	
 	animation_damage.play("damaged")
 	animation_damage.seek(0)
 	animation_damage.queue("default")
@@ -176,6 +180,10 @@ func damage_taken(_hurt_box : HurtBox) -> void:
 func defeat() -> void:
 	animation_player.play("destroy")
 	enable_hit_box(false)
+	
+	#Hide the boss HP GUI
+	PlayerHealth.hide_boss_health()
+	
 	persistent_data_handler.set_value()
 	await animation_player.animation_finished
 	

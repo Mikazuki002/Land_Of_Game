@@ -7,6 +7,9 @@ var hearts : Array[HealthPoints] = []
 @onready var continue_button: Button = $Control/Game_Over/VBoxContainer/Continue
 @onready var back_to_title_button: Button = $Control/Game_Over/VBoxContainer/Back_to_Title
 @onready var animation_player: AnimationPlayer = $Control/Game_Over/AnimationPlayer
+@onready var boss_gui: Control = $Control/Boss_GUI
+@onready var boss_texture_progress_bar: TextureProgressBar = $Control/Boss_GUI/TextureProgressBar
+@onready var boss_label: Label = $Control/Boss_GUI/Label
 
 
 func _ready() -> void:
@@ -21,7 +24,13 @@ func _ready() -> void:
 	continue_button.pressed.connect(load_game)
 	back_to_title_button.pressed.connect(title_screen)
 	LevelManager.level_load_started.connect(hide_game_over_screen)
+	
+	hide_boss_health()
+	
+	
 	pass 
+
+
 
 func update_HP(_hp : int, _max_hp : int) -> void:
 	updateMaxHP(_max_hp)
@@ -91,3 +100,21 @@ func fade_game_over_screen() -> bool:
 	PlayerManager.player.revive_player()
 	
 	return true
+
+func show_boss_health( boss_name : String) -> void:
+	boss_gui.visible = true
+	boss_label.text = boss_name
+	update_boss_health(1,1)
+	pass
+
+
+func hide_boss_health() -> void:
+	
+	boss_gui.visible = false
+	pass
+
+
+func update_boss_health(hp : int, max_hp : int) -> void:
+	
+	boss_texture_progress_bar.value = clampf(float(hp) / float(max_hp) * 100, 0, 100)
+	pass

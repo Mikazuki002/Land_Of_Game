@@ -3775,7 +3775,7 @@ side = 2
 [node name="Vaelith" type="Node2D" parent="." unique_id=581722793]
 y_sort_enabled = true
 script = ExtResource("5_2mvfi")
-max_hp = 1
+max_hp = 2
 
 [node name="PersistentDataHandler" parent="Vaelith" unique_id=955266799 instance=ExtResource("5_6gmjg")]
 
