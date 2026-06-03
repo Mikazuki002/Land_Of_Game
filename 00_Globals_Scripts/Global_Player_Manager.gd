@@ -3,6 +3,9 @@ extends Node
 const PLAYER = preload("uid://dsb65wlwxyoa5")
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/Inventory/player_inventory.tres")
 
+signal interact_pressed
+
+
 
 var player : Player
 var player_spawned : bool = false
@@ -41,6 +44,10 @@ func set_as_parent(_p : Node2D) -> void:
 	
 	if not player.get_parent():
 		_p.add_child(player)
+		# Force camera to reset after reparenting
+		var cam : Camera2D = player.get_node("Camera2D")
+		cam.make_current()  #  this is the key line
+		
 
 
 func unparent_player(_p : Node2D) -> void:

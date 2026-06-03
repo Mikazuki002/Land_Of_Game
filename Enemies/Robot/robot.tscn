@@ -5,14 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://y1odgn4ax1lk" path="res://GeneralNodes/Hitbox/hit_box.tscn" id="3_4sial"]
 [ext_resource type="Script" uid="uid://br60gf80akhfx" path="res://Enemies/Scripts/Enemy_State_Machine.gd" id="3_csqem"]
 [ext_resource type="Script" uid="uid://byvofsmmpikig" path="res://Enemies/Scripts/States/Enemy_State_Idle.gd" id="4_k7mys"]
-[ext_resource type="Script" uid="uid://b0ku6ssvs840w" path="res://Enemies/Scripts/States/Enemy_State_Wander.gd" id="5_d65pe"]
+[ext_resource type="Script" uid="uid://b0ku6ssvs840w" path="res://Enemies/Scripts/States/Enemy_State_Chase.gd" id="5_d65pe"]
 [ext_resource type="PackedScene" uid="uid://cs2pyp0cwej6f" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="6_2gi3s"]
 [ext_resource type="Script" uid="uid://bx5imctwliw63" path="res://Enemies/Scripts/States/Enemy_State_Stun.gd" id="7_c2cf1"]
+[ext_resource type="Script" uid="uid://bbarhfmfuxxn8" path="res://Enemies/Scripts/States/Enemy_State_Wander.gd" id="7_l6uyq"]
 [ext_resource type="Texture2D" uid="uid://di6sxsn1s47ct" path="res://Enemies/Robot/Destroy_Effect.png" id="8_4sial"]
 [ext_resource type="Script" uid="uid://cemq7jqwoyota" path="res://Enemies/Scripts/States/Enemy_State_Destroy.gd" id="9_desnc"]
 [ext_resource type="Script" uid="uid://cx8qkg1xlho23" path="res://Enemies/Scripts/drop_data.gd" id="10_sypwp"]
 [ext_resource type="Resource" uid="uid://6pv1nth72iq0" path="res://Items/crystal.tres" id="11_m5g1c"]
 [ext_resource type="Resource" uid="uid://dovph8y6vylki" path="res://Items/apple.tres" id="12_m5g1c"]
+[ext_resource type="PackedScene" uid="uid://buvvjwyfmr28x" path="res://Enemies/vision_area.tscn" id="15_hcdwy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjcpq"]
 radius = 12.0
@@ -47,6 +49,57 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hcdwy"]
+resource_name = "chase_down"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_8gsx3"]
+resource_name = "chase_side"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 9, 10, 11, 10, 12]
+}
+
+[sub_resource type="Animation" id="Animation_q051d"]
+resource_name = "chase_up"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 16, 21]
 }
 
 [sub_resource type="Animation" id="Animation_pjcpq"]
@@ -353,6 +406,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2cf1"]
 _data = {
 &"RESET": SubResource("Animation_vxq7h"),
+&"chase_down": SubResource("Animation_hcdwy"),
+&"chase_side": SubResource("Animation_8gsx3"),
+&"chase_up": SubResource("Animation_q051d"),
 &"destroy_down": SubResource("Animation_pjcpq"),
 &"destroy_side": SubResource("Animation_sypwp"),
 &"destroy_up": SubResource("Animation_m5g1c"),
@@ -466,6 +522,15 @@ texture = ExtResource("2_q15d5")
 hframes = 8
 vframes = 4
 
+[node name="AttackHurtBox" parent="Sprite2D" unique_id=908649259 instance=ExtResource("6_2gi3s")]
+position = Vector2(0, 18)
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtBox" unique_id=2018012968]
+position = Vector2(0, -19)
+shape = SubResource("CapsuleShape2D_pjcpq")
+debug_color = Color(0.65218455, 0, 0.16197416, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=685915588]
 position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_bycog")
@@ -481,17 +546,23 @@ script = ExtResource("4_k7mys")
 after_idle_state = NodePath("../Wanderer")
 
 [node name="Wanderer" type="Node" parent="EnemyStateMachine" unique_id=1508334376 node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_d65pe")
-state_animation_duration = 0.6
+script = ExtResource("7_l6uyq")
+anim_name = "chase"
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" unique_id=556575991 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_c2cf1")
-next_state = NodePath("../Idle")
+next_state = NodePath("../Chase")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=84732465]
 script = ExtResource("9_desnc")
 drops = Array[ExtResource("10_sypwp")]([SubResource("Resource_xuw4y"), SubResource("Resource_l6uyq")])
+
+[node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=85768430 node_paths=PackedStringArray("vision_area", "attack_area", "next_state")]
+script = ExtResource("5_d65pe")
+vision_area = NodePath("../../VisionArea")
+attack_area = NodePath("../../Sprite2D/AttackHurtBox")
+next_state = NodePath("../Idle")
 
 [node name="DestroyEffectSprite" type="Sprite2D" parent="." unique_id=1371545112]
 visible = false
@@ -501,3 +572,9 @@ vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DestroyEffectSprite" unique_id=1442772514]
 libraries/ = SubResource("AnimationLibrary_hcdwy")
+
+[node name="VisionArea" parent="." unique_id=1524396657 instance=ExtResource("15_hcdwy")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea" unique_id=1365848016]
+position = Vector2(-2, 65)
+polygon = PackedVector2Array(-16, -95.59259, 16, -95.59259, 128, 32.40741, -128, 32.40741)

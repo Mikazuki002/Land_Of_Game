@@ -36,6 +36,8 @@ func initialize(_player : Player) -> void:
 	
 	
 	for state in states:
+		state.player = _player  # ← set on ALL states, not just states[0]
+		state.state_machine = self
 		state.init()
 	
 	changeState(states[0])

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cbt3fhpurf2yd"]
+
+[ext_resource type="Texture2D" uid="uid://dl43vckm6pq6f" path="res://Props/Sprites/Dungeon_Entrance.png" id="2_4y2f4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bk3pt"]
+radius = 45.0
+
+[node name="Portal" type="Node2D" unique_id=34809083]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1605951404]
+texture = ExtResource("2_4y2f4")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1649335216]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1191184668]
+position = Vector2(2, -6)
+shape = SubResource("CircleShape2D_bk3pt")

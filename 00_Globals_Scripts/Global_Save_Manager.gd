@@ -34,10 +34,15 @@ func save_game() -> void:
 	pass
 
 
+func get_save_file() -> FileAccess:
+	
+	
+	return FileAccess.open(SAVE_PATH + "save.sav", FileAccess.READ)
+
 
 func load_game() -> void:
 	
-	var file := FileAccess.open(SAVE_PATH + "save.sav", FileAccess.READ)
+	var file := get_save_file()
 	var json := JSON.new()
 	
 	json.parse(file.get_line())
@@ -73,3 +78,16 @@ func update_scene_path() -> void:
 
 func update_item_data() -> void:
 	current_save.items = PlayerManager.INVENTORY_DATA.get_save_data()
+
+
+func addPersistentValue(value : String) -> void:
+	if checkPersistentValue(value) == false:
+		current_save.persistence.append(value)
+	
+	pass
+
+
+func checkPersistentValue(value : String) -> bool:
+	
+	var p = current_save.persistence as Array
+	return p.has(value)

@@ -4,10 +4,12 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var cardinal_direct : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
+@onready var state_machine: Node = $StateMachine
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var state_machines: PlayerStateMachine = $StateMachine
 @onready var hit_box: Hitbox = $HitBox
 
 signal directionChanged(new_direction : Vector2)
@@ -19,11 +21,9 @@ var max_hp : int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayerManager.player = self
 	state_machine.initialize(self)
 	hit_box.damaged.connect(_take_damage)
 	updateHP(99)
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,9 +41,14 @@ func _process(_delta):
 func _physics_process(_delta):
 	
 	move_and_slide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("test"):
+		updateHP(-99)
+		player_damaged.emit(%AttackHurtBox)
 	
-	
-	
+	pass
+
 func setDirection() -> bool:
 	if direction == Vector2.ZERO:
 		return false
@@ -82,13 +87,10 @@ func _take_damage(hurt_box : HurtBox) -> void:
 	print("take_damage called, invulnerable: ", invulnerable)
 	if invulnerable == true:
 		return
-	updateHP(-hurt_box.damage)
+	
 	if hp > 0:
+		updateHP(-hurt_box.damage)
 		player_damaged.emit(hurt_box)
-	else:
-		player_damaged.emit(hurt_box)
-
-		updateHP(99)
 	
 	pass
 
@@ -107,3 +109,9 @@ func makeInvulnerable(_duration : float = 1.0) -> void:
 	invulnerable = false
 	hit_box.monitoring = true
 	pass
+
+
+
+func revive_player() -> void:
+	updateHP(99)
+	state_machine.changeState($StateMachine/Idle)
