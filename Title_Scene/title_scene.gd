@@ -9,7 +9,8 @@ const START_LEVEL : String = "res://playground.tscn"
 func _ready() -> void:
 	
 	get_tree().paused = true
-	PlayerManager.player.visible = false
+	if PlayerManager.player != null and is_instance_valid(PlayerManager.player):
+		PlayerManager.player.visible = false
 	
 	PlayerHealth.visible = false
 	PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
@@ -45,7 +46,8 @@ func loadGame() -> void:
 
 
 func exit_title_screen() -> void:
-	PlayerManager.player.visible = true
+	if PlayerManager.player != null and is_instance_valid(PlayerManager.player):
+		PlayerManager.player.visible = true
 	
 	PlayerHealth.visible = true
 	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS

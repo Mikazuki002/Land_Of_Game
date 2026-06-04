@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ceoni6xlw7vpe"]
+
+[ext_resource type="PackedScene" uid="uid://bm7qx3jmyrqqd" path="res://TileMaps/dungeon_01.tscn" id="1_vn4hf"]
+
+[node name="03" type="Node2D" unique_id=641419026]
+
+[node name="dungeon_01" parent="." unique_id=826898732 instance=ExtResource("1_vn4hf")]

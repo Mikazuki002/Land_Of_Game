@@ -3768,7 +3768,7 @@ rendering_quadrant_size = 32
 position = Vector2(246, 38)
 
 [node name="Final_Boss_Lair" parent="." unique_id=769942995 instance=ExtResource("4_4ghom")]
-position = Vector2(256, -36)
+position = Vector2(255, -2)
 size = 7
 side = 2
 

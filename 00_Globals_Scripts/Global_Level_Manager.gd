@@ -51,4 +51,11 @@ func _place_player() -> void:
 		if t.name == target_transition:
 			PlayerManager.set_player_position(t.global_position + position_offset)
 			return
+	
+	# Fallback: find PlayerSpawn node in the scene
+	var spawn := get_tree().get_nodes_in_group("player_spawn")
+	if spawn.size() > 0:
+		PlayerManager.set_player_position(spawn[0].global_position)
+		return
+	
 	push_warning("LevelManager: Could not find transition '%s'" % target_transition)

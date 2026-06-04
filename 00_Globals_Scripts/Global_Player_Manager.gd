@@ -39,16 +39,21 @@ func set_player_position(_new_pos : Vector2) -> void:
 
 
 func set_as_parent(_p : Node2D) -> void:
+	# Re-instantiate if player was freed
+	if player == null or not is_instance_valid(player):
+		add_player_instance()
+	
 	if player.get_parent():
 		player.get_parent().remove_child(player)
 	
 	if not player.get_parent():
 		_p.add_child(player)
-		# Force camera to reset after reparenting
 		var cam : Camera2D = player.get_node("Camera2D")
-		cam.make_current()  #  this is the key line
+		cam.make_current()
 		
 
 
 func unparent_player(_p : Node2D) -> void:
+	if player == null or not is_instance_valid(player):
+		return
 	_p.remove_child(player)
